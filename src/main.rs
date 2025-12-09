@@ -1,20 +1,20 @@
 mod config;
 mod microsoft;
-use std::env;
+use clap::{Command, arg};
 use reqwest::blocking::Client;
 use std::collections::HashMap;
 use serde_json;
 use std::thread::sleep;
 use std::time::Duration;
 
-fn gen_token(config: &config::Oauth2Config) {
+fn gen_token(config: &mut config::Oauth2Config) {
     println!("Use the following configuration:");
     println!("> app_id: {}", config.app_id);
     println!("> scopes: {}", config.scopes);
     println!("> device_code_endpoint: {}", config.device_code_endpoint);
     println!("> token_endpoint: {}", config.token_endpoint);
 
-    let mut client = Client::new();
+    let  client = Client::new();
     let mut device_code_data = HashMap::new();
     device_code_data.insert("client_id", &config.app_id);
     device_code_data.insert("scope", &config.scopes);
@@ -73,19 +73,23 @@ fn gen_token(config: &config::Oauth2Config) {
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let command = match args.get(2) {
+    let args = Command::new("oauth2-login-cli").version("0.1.0").about("Automatically generate and poll for OAuth2 tokens for email clients.")
+        .arg(arg!([config]).required(true).help("config filename"))
+        .arg(arg!([provider]).required(true).help("oauth2 provider"))
+        .arg(arg!(-c --command <command>).help("Operation commands"))
+        .get_matches();
+    let command = match args.get_one::<String>("command") {
         Some(arg) => arg,
         None => "gen-token"
     };
-    let filename = match args.get(2) {
+    let filename = match args.get_one::<String>("config") {
         Some(arg) => arg,
         None => {
             eprintln!("Provide configuration program file names");
             std::process::exit(1);
         }
     };
-    let provider = match args.get(3) {
+    let provider = match args.get_one::<String>("provider") {
         Some(arg) => arg,
         None => {
             eprintln!("You must provide an OAuth2 provider!");
@@ -98,7 +102,7 @@ fn main() {
     for config in data.iter_mut() {
         if config.provider == *provider {
             if command == "gen-token" {
-                gen_token(&config);
+                gen_token(config);
             }
         }
     }

@@ -2,8 +2,6 @@ use std::fs::File;
 use std::io::Read;
 use serde::Deserialize;
 use serde::Serialize;
-use std::marker::Copy;
-use std::clone::Clone;
 
 #[derive(Serialize, Deserialize)]
 pub struct Oauth2Config {
