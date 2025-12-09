@@ -149,6 +149,17 @@ fn renew(config: &mut config::Oauth2Config) {
 
 }
 
+fn get_access_token(config: &mut config::Oauth2Config) {
+    let mut token: config::Oauth2Token = match &config.token {
+        Some(token) => token.clone(),
+        None => {
+            println!("The token was not obtained. You need to run the `gen-token` command first to get the token!");
+            std::process::exit(1);
+        }
+    };
+    println!("{}", token.access_token);
+}
+
 fn main() {
     let args = Command::new("oauth2-login-cli").version("0.1.0").about("Automatically generate and poll for OAuth2 tokens for email clients.")
         .arg(arg!([config]).required(true).help("config filename"))
@@ -186,6 +197,9 @@ fn main() {
                 },
                 "renew" => {
                     renew(config);
+                },
+                "get_access_token" => {
+                    get_access_token(config);
                 },
                 _ => {
                     println!("Error: The command does not exist. Please check the parameters!");
