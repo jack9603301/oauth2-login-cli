@@ -1,0 +1,9 @@
+[
+	{
+		"provider": "outlook",
+		"app_id": "38cbf49a-b050-43c5-8951-4cda9e1299a8",
+		"scopes": "openid profile https://outlook.office.com/SMTP.Send https://outlook.office.com/IMAP.AccessAsUser.All https://outlook.office.com/POP.AccessAsUser.All offline_access",
+		"device_code_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode",
+		"token_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+	}
+]
