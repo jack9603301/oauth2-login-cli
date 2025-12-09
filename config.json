@@ -1,9 +1,14 @@
 [
-	{
-		"provider": "outlook",
-		"app_id": "38cbf49a-b050-43c5-8951-4cda9e1299a8",
-		"scopes": "openid profile https://outlook.office.com/SMTP.Send https://outlook.office.com/IMAP.AccessAsUser.All https://outlook.office.com/POP.AccessAsUser.All offline_access",
-		"device_code_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode",
-		"token_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
-	}
+  {
+    "provider": "outlook",
+    "app_id": "38cbf49a-b050-43c5-8951-4cda9e1299a8",
+    "scopes": "openid profile https://outlook.office.com/SMTP.Send https://outlook.office.com/IMAP.AccessAsUser.All https://outlook.office.com/POP.AccessAsUser.All offline_access",
+    "device_code_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode",
+    "token_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+    "token": {
+      "token_type": "Bearer",
+      "access_token": "EwAYBOl3BAAU0wDjFA6usBY8gB2LLZHCr9gRQlcAAYSj9sdaCn4pUc04dTvi/r5ketvr1AzCWAYhqXit0yPs/k3LXjLUNdGszy3lP/8m7VX8FFsvmadLdH59hYFo8xtAGPw1m7Si4wd1ZljX81/ZWT669pKFg8AlREFrx+9mUrycAeWgOfjWP51FIMqjb5oBoFD8unlCHKqCDekzG1DGXFKvEcEaM5sm6tUb6AEEUzAIWjVODa6JY/Sgv9kkC/2ZDr2hPRvLWoS+61X2GiGf4Qzci/VRLwthbgTAa9LsLD0tKeuB0TC7a/3DVUaL+wsWvmcd2a5mus3kmtqug3djYUqcIcfbcDw5JgLFXZqb2+1bzxYoFCaoWBsKS7mgk1MQZgAAEHPuod1ti1PBShDsZfTiERbgAtKwdg1nydOaURMK6WG0j7dqB6uWEtd/01Tqhe4HtJYNc69RmWMjEd+aCwSvrGv7q5tWvAlWoQAopqoe/n81k7sy94iU4h8+T4+4J8D/hgqKdUsEavILUEXxe3s+9sRAWJMhBJMu7q9PdGrLiShYxpUgZMmU9jvDo3do2fJQSsKbDBNTihGcqSjLn6UYMWt1FWoRGtKOXRb28dcEP1ixvznt0tgrvSxz59fGpG26oe6h+5oXmQsNWiW8yqmfn4XK5CdXjmvx7nOH1e3j3SQfcBJRRWpGlbxLojNdrlrYGrNv75DkXLf7O9bSNPaiDugBGzOttO+mMET/F5B3jd8540MlRUGCa1aFEDd+Vo0leuhCwTkLY8PcV8txQegje+OIjY55S/BWPYJIJeXaShTr7Zp2nWExEs3lAM5P0Jui2ExhMuh3zQnvJPujvFjh7orMw6NE3eIEdw+7LoNOaFpNjJtMQwrpa2TnR7UmXAlZtmBirgMVYmgDOpHtwbjoqpCEeeKyKcB5Rah1qZyql7kfZzIltVg+FIljV8TRxGyHdtsyTrYpo+88sz84ilj79xrNMz7eFt5+bPhjXElC9xmoQO+Mr8qWURoOjqhWcmMA1ZX98CF1LVyGNm3xXD/E5YPJix42xJnsYuAZkANhswd1A+Pd4vaXeV+vAl379Gn7obTkkXdgw0mrmLRlU6+IYy23RowGBmZW6w2j4DalFRb68kcj5PoxR4BxGoaIsawEkVk0da1LhI2y5plNlUaXzW8+POEuatOimzkhTRnoF4hzy7QnP2h/fd5ZV4L1nGc4fslR6ptVYCjUq8qjSFSRhVZ0Dte1HVodmcg69e0liXAZuJdpuyz9y3abgJuxByxYuIKKHW41+SWhBiNniQ11TcbaWDhVVZNVdvTL4w+OYyXu9YnAqBq0h6p2CTjIHC0MwJlZoFbKwhcljl4o49boLY7L6WRYk9wwxaNsjJElEZvdHU4UAw==",
+      "refresh_token": "M.C539_BAY.0.U.-Ck1TlgOPXlGMA9HL5LgkYt0oJ22cTtTZE1U62pNfFKTmJgELAPdnmHN15RNfkOqRLO7G9!i6CXifhcHIEpYdmBYN9rqQ1Zpc3JcJpJLDqV5zYgoxiUVcz*MnxwlC6PSSAwYGUHHy0Jxu3UEHNWBRAM6gbIzkRtzneN8P1GPfOnuy1ZfV2bRUtQnCuRwR5r*NluDUYm*d9zvQT5h1WVNxusgRnvjsCVYjc9Q5I13LeNN!8QHEe4p9cBJXzKdBXRvKJvFuZCz*n0faGba5kV5DdTlEjQg7YkybThm54AE02XM4GmZgPAzTbKFljgZ3DjvUBnGxtaP34GXWn55Cz4LQ3tzGyrNd0BLNkyHPcdPL2lFfpkcw3qwIKNS14GaLivySVeoekD85DnPksrPGIK47s65jPcOhhtESqHmSYZl*dyeo"
+    }
+  }
 ]
