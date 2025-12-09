@@ -2,6 +2,7 @@ use std::fs::File;
 use std::io::Read;
 use serde::Deserialize;
 use serde::Serialize;
+use std::clone::Clone;
 
 #[derive(Serialize, Deserialize)]
 pub struct Oauth2Config {
@@ -13,9 +14,10 @@ pub struct Oauth2Config {
     pub token: Option<Oauth2Token>
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct Oauth2Token {
     pub token_type: String,
+    pub expires: u64,
     pub access_token: String,
     pub refresh_token: String,
 }
