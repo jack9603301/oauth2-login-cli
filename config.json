@@ -1,15 +1,9 @@
 [
   {
-    "provider": "outlook",
+    "account_name": "account name",
     "app_id": "38cbf49a-b050-43c5-8951-4cda9e1299a8",
-    "scopes": "openid profile https://outlook.office.com/SMTP.Send https://outlook.office.com/IMAP.AccessAsUser.All https://outlook.office.com/POP.AccessAsUser.All offline_access",
+    "scopes": "openid profile https://jack9603301@outlook.com.office.com/SMTP.Send https://outlook.office.com/IMAP.AccessAsUser.All https://outlook.office.com/POP.AccessAsUser.All offline_access",
     "device_code_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode",
-    "token_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-    "token": {
-      "token_type": "Bearer",
-      "expires": 1765300119,
-      "access_token": "EwAYBOl3BAAU0wDjFA6usBY8gB2LLZHCr9gRQlcAAUjP3HgGwke1U2vS+LqnHw9+rVNNzSLkpXtrOyo1Hp2x4Lcxj3mKTLRjkScYh6V7sHyqru9WBjLGHd8cc3eVlgHsnCojpEZMjLmdPuH2Ck0TmkbkpInmIN+5BaNMKIj+7OTEiy8ujjtHc9E2LfeztM/IprDup94hNg6P64PEumLyhKxQrYphFQxnx++2KQODQw5hgbmSKfgDOve5Mpb2HMxV4tXmzvFm7shCGIUhwCUhW6cvhDzNe5pzEWERBYDhG+UoYuKjSxDZKbJZ14CTRnJya8TImz9LOsdpHUNG3a6k+5dls1LZOeEq9/DRNDsuwU7ylhqdj84RLnCiNrAErHQQZgAAEOe/TD5/Dq0cdUyFVRuhRd7gApw32rue14ByB67rm4GNgpz/gxTGtz/kxYRzcB9ETlDn6nKxTEt1zliBwFUsolr7gWv1cWMUz8ehzFn3citLkN0XD32U71iutxEKlITqW7v/l8zysSaRTSqcuxt7x6yoiyQFAL8R75W6HsfC8CBv8KhGiIx4VlegDkNjyUPl4PT21z0MEGdvj6bouqQHZdeGDrzZ5dO9eoluvYpt+z59fNnEfFxRc7SqTjQDaiELn65LBPI6/XCzGoSDBXHhSAZFR28iH8yMkU9OjdJRGDhNtnHt7n6BU58pcTFXh/KGEb+3mxuxHYT4G7boQudXxED8Xu2sV4UQlzj2J+GUjq+uelaRwYMq3PCBCuh/GjoXRBYq8T52iBBN0AyL4fTVJiuPKGRH+F+ZwPiHQWzfftRBQmhogJ1y6+ucwEE9L6ozEEbvB+LOyBjDkCiLgyymEZwiA+eohqWYc3VhHBYpBOL1nc+F1RbMZx9hKrBTGuOw1LPzHLfBocNz69V+N1SgZsM2LMw2akfUsRhUYntbVez2OMXYnYorr/9l0yNj0hnTtXc08DrWtb9GaGvQLvZfmmag8fKT+91vqq+X07ZZV5RJCuU019tLkyslOPNHpYPCQLQuZMFw6is+F/RNJq4TbBuAZYD98OsaKQZFknk+bGlT9IrQYxYxYpQE1M5tKsTbGzQzphpsMRHUz/HawEPkwQHfWDv6lSOssabh077Ix/UNfXxjneIcZXA7bjwhwPTNgj6YyCaKC93FJLjlsE1jUB5IpGfIHOfv/6llgxzTQpK8P8ACCu/R4oby6MhEvgoSe6+yHb90HbWy3b8abUenwfcV+QWdXFBqazuqFwyRVFGuuRhiGk1DqlNFJNa7ASzroR2T6Tjs6dOnkzjY5c8EnneQ0wum4pgS+oJ9Ujk9iBzFtw4Od/+TC1XAB59Iujt3DMdCIX/V3AeQrRUBMjyNDYcd6hxUk8caLaoJmR7DMsDWhocUAw==",
-      "refresh_token": "M.C539_BL2.0.U.-Cqc3j4djuMTYJGGVAf2xUjVMEveViXEZE4OB0Q5*ly2h*mjLQU72lNJn*ULSVdxSB*CLSIkvDmw4Jz5CID8T2satzK5aYJZXPi3vlaIkT4xEovUHIax!*sRBoDVMJ1sEeIPHArYMRSMBe4Ct!sEVC*j6qUWtf0*qXW0aWEmE9F5RA3!Jceg6KYbsSyUea3CQzV5VxmIWrJXSzOcvG0e4JO9sIxrBmG5Eo!EQ9tarwaP5lxcjhvOhPkEYyRtDeLb*dV*rpntOgVHg!7BzTdewUWLaFBG8CBl!4FNgsA80*d*5e*BHQypcvG6xV4fM9SnnuaPCnHBtdfLkwMTvluy20LXEinwgJ18S0ToBMRQu3qnMH6pfsWUsN9N1MtZyToyMpW9JpiNz9EGI!j6elVkpTp9f95f*hHMVh1oRHa3HB721"
-    }
+    "token_endpoint": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
   }
 ]

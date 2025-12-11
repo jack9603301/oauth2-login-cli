@@ -6,7 +6,7 @@ use std::clone::Clone;
 
 #[derive(Serialize, Deserialize)]
 pub struct Oauth2Config {
-    pub provider: String,
+    pub account_name: String,
     pub app_id: String,
     pub scopes: String,
     pub device_code_endpoint: String,

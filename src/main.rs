@@ -113,7 +113,7 @@ fn renew(config: &mut config::Oauth2Config) {
 
     let  client = Client::new();
     if token.expires <= expires {
-        println!("Provider {} is token has expired; automatically refreshing.", config.provider);
+        println!("Provider {} is token has expired; automatically refreshing.", config.account_name);
         let mut form_data = HashMap::new();
         let grant_type: String = String::from("refresh_token");
         form_data.insert("grant_type", &grant_type);
@@ -144,7 +144,7 @@ fn renew(config: &mut config::Oauth2Config) {
             println!("Token endpoint call failed!")
         }
     } else {
-        println!("Provider {} is token has not expired and does not need to be refreshed.", config.provider);
+        println!("Provider {} is token has not expired and does not need to be refreshed.", config.account_name);
     }
 
 }
@@ -163,7 +163,7 @@ fn get_access_token(config: &mut config::Oauth2Config) {
 fn main() {
     let args = Command::new("oauth2-login-cli").version("0.1.0").about("Automatically generate and poll for OAuth2 tokens for email clients.")
         .arg(arg!([config]).required(true).help("config filename"))
-        .arg(arg!([provider]).required(true).help("oauth2 provider"))
+        .arg(arg!([account_name]).required(true).help("oauth2 account_name"))
         .arg(arg!(-c --command <command>).help("Operation commands"))
         .get_matches();
     let command = match args.get_one::<String>("command") {
@@ -177,10 +177,10 @@ fn main() {
             std::process::exit(1);
         }
     };
-    let provider = match args.get_one::<String>("provider") {
+    let account_name = match args.get_one::<String>("account_name") {
         Some(arg) => arg,
         None => {
-            eprintln!("You must provide an OAuth2 provider!");
+            eprintln!("You must provide an OAuth2 account_name!");
             std::process::exit(1);
         }
     };
@@ -189,7 +189,7 @@ fn main() {
 
     let mut found = false;
     for config in data.iter_mut() {
-        if config.provider == *provider {
+        if config.account_name == *account_name {
             found = true;
             match command {
                 "gen-token" => {
@@ -210,7 +210,7 @@ fn main() {
     }
 
     if !found {
-        println!("No OAuth2 provider found. Please check the parameters!");
+        println!("No OAuth2 account_name found. Please check the parameters!");
     } else {
         config::saveJson(filename, &data);
     }
