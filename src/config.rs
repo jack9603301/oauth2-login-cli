@@ -8,6 +8,7 @@ use std::clone::Clone;
 pub struct Oauth2Config {
     pub account_name: String,
     pub app_id: String,
+    pub client_secret: Option<String>,
     pub scopes: String,
     pub device_code_endpoint: String,
     pub token_endpoint: String,

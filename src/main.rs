@@ -1,5 +1,5 @@
 mod config;
-mod microsoft;
+mod oauth;
 use clap::{Command, arg};
 use reqwest::blocking::Client;
 use std::collections::HashMap;
@@ -31,8 +31,13 @@ fn get_unix_timestamp_plus_offset(offset_seconds: i64) -> u64 {
 }
 
 fn gen_token(config: &mut config::Oauth2Config) {
+    let client_secret = match &config.client_secret {
+        Some(secret) => secret.clone(),
+        None => "".to_string()
+    };
     println!("Use the following configuration:");
     println!("> app_id: {}", config.app_id);
+    println!("> client secret: {}", client_secret);
     println!("> scopes: {}", config.scopes);
     println!("> device_code_endpoint: {}", config.device_code_endpoint);
     println!("> token_endpoint: {}", config.token_endpoint);
@@ -40,12 +45,13 @@ fn gen_token(config: &mut config::Oauth2Config) {
     let  client = Client::new();
     let mut device_code_data = HashMap::new();
     device_code_data.insert("client_id", &config.app_id);
+    device_code_data.insert("client_secret", &client_secret);
     device_code_data.insert("scope", &config.scopes);
             
     let device_code_response = client.post(&config.device_code_endpoint).form(&device_code_data).send().unwrap();
 
     if device_code_response.status().is_success() {
-        let device_code_data: microsoft::deviceCodeEndpointResponse = serde_json::from_str(&device_code_response.text().unwrap()).expect("Failed to parse the data returned from the device code endpoint.");
+        let device_code_data: oauth::deviceCodeEndpointResponse = serde_json::from_str(&device_code_response.text().unwrap()).expect("Failed to parse the data returned from the device code endpoint.");
         println!("Please check the interface data:");
         println!("> user code: {}", device_code_data.user_code);
         println!("> device_code: {}", device_code_data.device_code);
@@ -56,12 +62,13 @@ fn gen_token(config: &mut config::Oauth2Config) {
             let grant_type = String::from("urn:ietf:params:oauth:grant-type:device_code");
             token_data.insert("grant_type", &grant_type);
             token_data.insert("client_id", &config.app_id);
+            token_data.insert("client_secret", &client_secret);
             token_data.insert("device_code", &device_code_data.device_code);
 
             let token_response = client.post(&config.token_endpoint).form(&token_data).send().unwrap();
 
             if token_response.status().is_success() {
-                let token_response_data: microsoft::tokenEndpointResponse = serde_json::from_str(&token_response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
+                let token_response_data: oauth::tokenEndpointResponse = serde_json::from_str(&token_response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
                 println!("Please check the interface data:");
                 println!("> token type: {}", token_response_data.token_type);
                 println!("> expires in: {}", token_response_data.expires_in);
@@ -77,28 +84,31 @@ fn gen_token(config: &mut config::Oauth2Config) {
                 break;
             } else {
                 println!("Request error, please check your OAuth2 configuration.");
-                let error: microsoft::Error = serde_json::from_str(&token_response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
+                let error: oauth::Error = serde_json::from_str(&token_response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
                 println!("Please check the interface data:");
                 println!("> user code: {}", error.error);
                 println!("> error description: {}", error.error_description);
-                println!("> error codes: {}", error.error_codes.iter().map(|i| i.to_string()).collect::<Vec<String>>().join(", "));
             }
             sleep(Duration::from_secs(1));
         }
     } else {
         println!("Request error, please check your OAuth2 configuration.");
-        let error: microsoft::Error = serde_json::from_str(&device_code_response.text().unwrap()).expect("Failed to parse the data returned from the device code endpoint.");
+        let error: oauth::Error = serde_json::from_str(&device_code_response.text().unwrap()).expect("Failed to parse the data returned from the device code endpoint.");
         println!("Please check the interface data:");
         println!("> user code: {}", error.error);
         println!("> error description: {}", error.error_description);
-        println!("> error codes: {}", error.error_codes.iter().map(|i| i.to_string()).collect::<Vec<String>>().join(", "));
         std::process::exit(1);
     }
 }
 
 fn renew(config: &mut config::Oauth2Config) {
+    let client_secret = match &config.client_secret {
+        Some(secret) => secret.clone(),
+        None => "".to_string()
+    };
     println!("Use the following configuration:");
     println!("> app_id: {}", config.app_id);
+    println!("> client secret: {}", client_secret);
     println!("> scopes: {}", config.scopes);
     println!("> device_code_endpoint: {}", config.device_code_endpoint);
     println!("> token_endpoint: {}", config.token_endpoint);
@@ -118,6 +128,7 @@ fn renew(config: &mut config::Oauth2Config) {
         let grant_type: String = String::from("refresh_token");
         form_data.insert("grant_type", &grant_type);
         form_data.insert("client_id", &config.app_id);
+        form_data.insert("client_secret", &client_secret);
         form_data.insert("refresh_token", &token.refresh_token);
         
         let response = client.post(&config.token_endpoint)
@@ -126,7 +137,7 @@ fn renew(config: &mut config::Oauth2Config) {
             .unwrap();
 
         if response.status().is_success() {
-            let token_response_data: microsoft::tokenEndpointResponse = serde_json::from_str(&response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
+            let token_response_data: oauth::tokenEndpointResponse = serde_json::from_str(&response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
             println!("Please check the interface data:");
             println!("> token type: {}", token_response_data.token_type);
             println!("> expires in: {}", token_response_data.expires_in);
@@ -177,6 +188,7 @@ fn main() {
             std::process::exit(1);
         }
     };
+
     let account_name = match args.get_one::<String>("account_name") {
         Some(arg) => arg,
         None => {
