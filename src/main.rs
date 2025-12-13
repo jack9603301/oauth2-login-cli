@@ -45,7 +45,6 @@ fn gen_token(config: &mut config::Oauth2Config) {
     let  client = Client::new();
     let mut device_code_data = HashMap::new();
     device_code_data.insert("client_id", &config.app_id);
-    device_code_data.insert("client_secret", &client_secret);
     device_code_data.insert("scope", &config.scopes);
             
     let device_code_response = client.post(&config.device_code_endpoint).form(&device_code_data).send().unwrap();
