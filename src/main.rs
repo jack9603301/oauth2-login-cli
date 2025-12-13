@@ -136,17 +136,16 @@ fn renew(config: &mut config::Oauth2Config) {
             .unwrap();
 
         if response.status().is_success() {
-            let token_response_data: oauth::tokenEndpointResponse = serde_json::from_str(&response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
+            let token_response_data: oauth::tokenEndpointResponse_Renew = serde_json::from_str(&response.text().unwrap()).expect("Failed to parse the data returned from the token endpoint.");
             println!("Please check the interface data:");
             println!("> token type: {}", token_response_data.token_type);
             println!("> expires in: {}", token_response_data.expires_in);
             println!("> access token: {}", token_response_data.access_token);
-            println!("> refresh token: {}", token_response_data.refresh_token);
             let token_config: config::Oauth2Token = config::Oauth2Token {
                 token_type: token_response_data.token_type,
                 expires: get_unix_timestamp_plus_offset(token_response_data.expires_in.into()),
                 access_token: token_response_data.access_token,
-                refresh_token: token_response_data.refresh_token
+                refresh_token: token.refresh_token
             };
             config.token = Some(token_config);
             println!("Token refresh completed.")
