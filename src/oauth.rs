@@ -15,6 +15,13 @@ pub struct Error {
 }
 
 #[derive(Deserialize)]
+pub struct tokenEndpointResponse_Renew {
+    pub token_type: String,
+    pub expires_in: i32,
+    pub access_token: String
+}
+
+#[derive(Deserialize)]
 pub struct tokenEndpointResponse {
     pub token_type: String,
     pub expires_in: i32,
